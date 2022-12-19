@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        php: ['7.4', '8.0', '8.1']
+        php: ['7.4', '8.0', '8.1', '8.2']
         laravel: ['8']
 
     steps:
@@ -21,6 +21,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
+          ini-values: error_reporting=E_ALL
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
