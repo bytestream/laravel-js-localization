@@ -30,13 +30,7 @@
     },
     "extra": {
         "component": "package",
-        "frameworks": ["Laravel 8"]
+        "frameworks": ["Laravel 8", "Laravel 9"]
     },
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git://github.com/orchestral/phpseclib.git"
-        }
-    ]
+    "minimum-stability": "dev"
 }
