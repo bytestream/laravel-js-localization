@@ -28,6 +28,9 @@ jobs:
           tools: composer:v2
           coverage: none
 
+      - name: Setup Problem Matchers
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
       - name: Select Laravel 8
         uses: nick-invision/retry@v2.8.2
         with:
