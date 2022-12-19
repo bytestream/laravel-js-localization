@@ -12,7 +12,9 @@ jobs:
     strategy:
       matrix:
         php: ['7.4', '8.0', '8.1', '8.2']
-        laravel: ['8']
+        laravel: ['8', '9']
+        exclude:
+          - { laravel: '9', php: '7.4' }
 
     steps:
       - name: Checkout Code
@@ -26,16 +28,27 @@ jobs:
           tools: composer:v2
           coverage: none
 
+      - name: Setup Problem Matchers
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
       - name: Select Laravel 8
-        uses: nick-invision/retry@v1
+        uses: nick-invision/retry@v2.8.2
         with:
           timeout_minutes: 5
           max_attempts: 5
-          command: composer require "laravel/framework:8.*" "phpunit/phpunit:^9.3|^10.0" --no-update --no-interaction
+          command: composer require "laravel/framework:8.*" "phpunit/phpunit:^9.3.7" --no-update --no-interaction
         if: "matrix.laravel == '8'"
 
+      - name: Select Laravel 9
+        uses: nick-invision/retry@v2.8.2
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer require "laravel/framework:9.*" "phpunit/phpunit:^9.3.7" --no-update --no-interaction
+        if: "matrix.laravel == '9'"
+
       - name: Install PHP Dependencies
-        uses: nick-invision/retry@v1
+        uses: nick-invision/retry@v2.8.2
         with:
           timeout_minutes: 5
           max_attempts: 5
