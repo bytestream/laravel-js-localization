@@ -10,13 +10,13 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
-        "illuminate/support": "^8.0|^9.0"
+        "php": "^8.0",
+        "illuminate/support": "^9.0|^10.0"
     },
     "require-dev": {
         "mockery/mockery": "~1.0",
-        "orchestra/testbench": "^6.0|^7.0",
-        "phpunit/phpunit": "^9.0"
+        "orchestra/testbench": "^7.0|^8.0",
+        "phpunit/phpunit": "^9.0|^10.0"
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +30,6 @@
     },
     "extra": {
         "component": "package",
-        "frameworks": ["Laravel 8", "Laravel 9"]
-    },
-    "minimum-stability": "dev"
+        "frameworks": ["Laravel 8", "Laravel 9","Laravel 10"]
+    }
 }
