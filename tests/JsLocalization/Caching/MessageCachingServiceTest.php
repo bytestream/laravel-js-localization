@@ -1,6 +1,7 @@
 <?php
 
-use Mockery as m;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Event;
 use JsLocalization\Facades\MessageCachingService;
 
 class MessageCachingServiceTest extends TestCase
@@ -13,14 +14,6 @@ class MessageCachingServiceTest extends TestCase
         Cache::forget(JsLocalization\Caching\MessageCachingService::CACHE_KEY);
         Cache::forget(JsLocalization\Caching\MessageCachingService::CACHE_TIMESTAMP_KEY);
     }
-
-    public function tearDown(): void
-    {
-        m::close();
-
-        parent::tearDown();
-    }
-
 
     public function testGetMessagesJson()
     {
@@ -54,10 +47,6 @@ class MessageCachingServiceTest extends TestCase
 
     public function testRefreshMessageCacheEvent()
     {
-        $this->addToAssertionCount(
-            \Mockery::getContainer()->mockery_getExpectationCount()
-        );
-
         Event::shouldReceive('dispatch')->once()->with('JsLocalization.registerMessages');
 
         MessageCachingService::refreshCache();

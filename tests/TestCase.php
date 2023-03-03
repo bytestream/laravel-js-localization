@@ -1,5 +1,6 @@
 sh<?php
 
+use Illuminate\Support\Facades\Config;
 use Mockery as m;
 
 class TestCase extends Orchestra\Testbench\TestCase
@@ -44,13 +45,6 @@ class TestCase extends Orchestra\Testbench\TestCase
         $this->updateMessagesConfig($this->testMessagesConfig);
         $this->updateConfigExportConfig($this->testConfigExportFlat);
         $this->mockLang();
-    }
-
-    public function tearDown(): void
-    {
-        m::close();
-
-        parent::tearDown();
     }
 
     protected function getPackageProviders($app)
