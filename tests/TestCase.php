@@ -1,4 +1,4 @@
-sh<?php
+<?php
 
 use Illuminate\Support\Facades\Config;
 use Mockery as m;

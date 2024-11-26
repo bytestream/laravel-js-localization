@@ -14,11 +14,10 @@ class RefreshCommandTest extends TestCase
 
     public function testNoLocalesConfigException()
     {
-        // Mock Config
-        Illuminate\Support\Facades\Config::swap($config = m::mock('ConfigMock'));
-
-        $config->shouldReceive('get')->with('js-localization.locales')
-          ->andReturn(null);
+        Illuminate\Support\Facades\Config::partialMock()
+            ->shouldReceive('get')
+            ->with('js-localization.locales')
+            ->andReturn(null);
 
         $this->expectException(Exception::class);
 
